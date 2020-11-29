@@ -18,7 +18,9 @@
     "type": "git",
     "url": "git://github.com/kentcdodds/es6-workshop.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "fsevents": "^2.2.1"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "chalk": "^2.3.2",
