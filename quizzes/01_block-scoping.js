@@ -1,7 +1,7 @@
 import log from './pretty-log'
 
 function basic() {
-  // what is returned?
+  // what is returned? { x: 100, y: 200 }
   let x = 100
   const y = 200
   return {x: x, y: y}
@@ -9,7 +9,7 @@ function basic() {
 // log(basic())
 
 function immutable() {
-  // what is returned?
+  // what is returned? { object: {a: 'q'}, array: [1, 3, 4]}
   const object = {a: 'b'}
   const array = [1, 2, 3, 4]
 
@@ -20,7 +20,7 @@ function immutable() {
 // log(immutable())
 
 function immutableReference() {
-  // what is returned?
+  // what is returned? Syntax error
   const object = {a: 'b'}
   // object = {a: 'q'}
   return object
@@ -28,7 +28,7 @@ function immutableReference() {
 // log(immutableReference())
 
 function ifBlock() {
-  // what is returned?
+  // what is returned? Reference Error
   if (3 > 1) {
     const x = 34
     let y = 43
@@ -38,7 +38,7 @@ function ifBlock() {
 // log(ifBlock())
 
 function block() {
-  // what is returned?
+  // what is returned? Reference Error
   {
     // this is called a "block" ✨
     const x = 42
@@ -49,7 +49,7 @@ function block() {
 // log(block())
 
 function scoped() {
-  // what is returned?
+  // what is returned? 33
   let x = 33
   {
     const x = 123
@@ -59,7 +59,7 @@ function scoped() {
 // log(scoped())
 
 function veryScoped() {
-  // what is returned?
+  // what is returned? 23 with declaration commented out; TypeError if uncommented
   let x = 23
   {
     let x
@@ -73,9 +73,9 @@ function veryScoped() {
 // log(veryScoped())
 
 function temporalDeadZone() {
-  console.log(myVar)
-  console.log(myLet)
-  console.log(myConst)
+  console.log(myVar) // undefined
+  console.log(myLet) // undefined
+  console.log(myConst) // undefined
 
   var myVar = 'var'
   let myLet = 'let'
@@ -85,7 +85,7 @@ function temporalDeadZone() {
 // log(temporalDeadZone())
 
 function semiPractical() {
-  // what is returned from this function?
+  // what is returned from this function? [undefined, undefined, undefined, undefined]
   const myThings = ['thing1', 'thing2', 'red fish', 'blue fish']
   const callbacks = []
   for (var i = 0; i < myThings.length; i++) {
