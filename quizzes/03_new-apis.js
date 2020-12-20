@@ -3,25 +3,22 @@ import log from './pretty-log'
 function stringIncludes() {
   // refactor to String.includes
   const phrase = 'in the box'
-  return phrase.indexOf('the') !== -1
+  return phrase.includes('the')
 }
 // log(stringIncludes())
 
 function stringRepeat() {
   // refactor to String.repeat
   const repeatCount = 20
-  let marker = ''
-  for (let i = 0; i < repeatCount; i++) {
-    marker += '*'
-  }
-  return marker
+  const marker = '*'
+  return marker.repeat(repeatCount)
 }
 // log(stringRepeat())
 
 function arrayFrom() {
   // refactor to Array.from
   const arrayLike = {length: 2, 0: 'hello', 1: 'world'}
-  return Array.prototype.slice.apply(arrayLike)
+  return Array.from(arrayLike)
 }
 // log(arrayFrom())
 
@@ -31,12 +28,7 @@ function arrayFill() {
   const start = 1
   const end = 4
   const array = new Array(7)
-  for (let i = 0; i < array.length; i++) {
-    if (i >= start && i < end) {
-      array[i] = value
-    }
-  }
-  return array
+  return array.fill(value, start, end)
 }
 // log(arrayFill())
 
