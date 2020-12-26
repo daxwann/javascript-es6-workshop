@@ -11,32 +11,38 @@ const theAnswer = 42
 
 // 4. how could we declare and export a variable
 // at declaration time?
-// const theQuestion = ['life', 'universe', 'everything']
+const theQuestion = ['life', 'universe', 'everything']
 
 // 5. how could we do all of these named exports
 // with a single declaration?
+// export { foo, theQuestion, theAnswer }
 
 // 6. how could we export `foo`, but make users
 // use the name `bar`?
+// export { foo as bar }
 
 // 7. how could we give the default export an
 // alias? (like we did with the last one?)
+// export { add as default }
 
 // 8. how could we do all of the exports (including
 // the default export) with a single declaration?
+// export { add as default, foo as bar, theQuestion, theAnswer }
 
 // 9. how could we take all the exports from
 // './module-b' and re-export them as a part of
 // our own module?
+// export * from './module-b' 
 
 // 10. how could we take only _some_ of the exports
 // from './module-b' and re-export them as a part
 // of our own module?
+// export { ex1, es3 } from './module-b';
 
 // 11. how could we take the default export from
 // './module-b' and re-export it with a different
 // name in our own module?
-
+// export { default } from './module-b';
 /*
 
 
