@@ -2,10 +2,8 @@ import log from './pretty-log'
 
 function basicDefaultParam() {
   return [randGen(), randGen(4), randGen(0)]
-  function randGen(n) {
+  function randGen(n = 10) {
     // refactor with default parameter to handle n = undefined
-    n = n || 10
-
     return Math.floor(n * Math.random())
   }
 }
@@ -14,11 +12,14 @@ function basicDefaultParam() {
 function defaultParamsAsExpressions() {
   return getCandy('twix', 'king')
 
-  function getCandy(kind, size, upperKind, callback) {
-    requiredParam('kind', kind)
-    requiredParam('size', size)
-    upperKind = upperKind === undefined ? kind.toUpperCase() : upperKind
-    callback = callback === undefined ? function noop() {} : callback
+  function getCandy(
+    kind = requiredParam('kind'),
+    size = requiredParam('size'),
+    upperKind = kind.toUpperCase(),
+    callback = function noop() {},
+  ) {
+    // upperKind = upperKind === undefined ? kind.toUpperCase() : upperKind
+    // callback = callback === undefined ? function noop() {} : callback
 
     const result = {kind, size, upperKind}
     callback(result)
@@ -42,12 +43,12 @@ function restParams() {
   ]
   return weatherOnDemand(availableCities, 'Bali', 'London')
 
-  function weatherOnDemand() {
+  function weatherOnDemand(weatherArray, ...cities) {
     // Use default parameters, argument destructuring
     // and other Array methods, to refactor this
-    const allArgs = Array.prototype.slice.call(arguments)
-    const weatherArray = allArgs[0]
-    const cities = allArgs.slice(1)
+    // const allArgs = Array.prototype.slice.call(arguments)
+    // const weatherArray = allArgs[0]
+    // const cities = allArgs.slice(1)
 
     return weatherArray.filter(cityData => {
       return cities.indexOf(cityData.city) !== -1
@@ -67,15 +68,15 @@ function destructureWithDefaultParams() {
   // the x-coordinate (x), and y-coordinate(y)
   // Not all of these fields would always be provided
   // When not provided, r defaults to 1, while x and y defaults to 0
-  function computeCircleArea(obj = {}) {
+  function computeCircleArea({ r = 1.0, x = 0.0, y = 0.0 } = {}) {
     /* Uncomment this to test what you are actually passing to the function*/
     // console.log(arguments);
 
     // TODO: Remove all references to obj,
     // using param destructuring
-    const radius = obj.r || 1.0
-    const xCoordinate = obj.x || 0.0
-    const yCoordinate = obj.y || 0.0
+    const radius = r || 1.0
+    const xCoordinate = x || 0.0
+    const yCoordinate = y || 0.0
 
     const area = Math.PI * radius * radius
 
