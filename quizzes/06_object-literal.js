@@ -8,9 +8,9 @@ function shorthandPropertyNames() {
   const blue = Math.floor(Math.random() * 256)
 
   return {
-    red: red,
-    green: green,
-    blue: blue,
+    red,
+    green,
+    blue,
   }
 }
 // log(shorthandPropertyNames())
@@ -21,20 +21,26 @@ function proto() {
     parentProp: 'parent',
     overriddenProp: 'parent overridden?',
   }
-  const child = Object.create(parent, {
-    childProp: {
-      value: 'child',
-      configurable: true,
-      enumerable: true,
-      writable: true,
-    },
-    overriddenProp: {
-      value: 'child overridden!',
-      configurable: true,
-      enumerable: true,
-      writable: true,
-    },
-  })
+  const child = {
+    __proto__: parent,
+    childProp: 'child',
+    overriddenProp: 'child overridden!',
+  }
+
+  // const child = Object.create(parent, {
+  //   childProp: {
+  //     value: 'child',
+  //     configurable: true,
+  //     enumerable: true,
+  //     writable: true,
+  //   },
+  //   overriddenProp: {
+  //     value: 'child overridden!',
+  //     configurable: true,
+  //     enumerable: true,
+  //     writable: true,
+  //   },
+  // })
   // getAllPropsInObject returns an object with
   // `inheritedProps` and `ownProps` objects.
   return getAllPropsInObject(child)
@@ -44,7 +50,7 @@ function proto() {
 function methodShorthand() {
   // refactor using method shorthand
   const greeter = {
-    sayHi: function sayHi(name) {
+    sayHi(name) {
       return `Hi ${name}`
     },
   }
@@ -65,9 +71,9 @@ function methodSuperCalls() {
   const child = {
     __proto__: parent,
     taxesFiledCount: 0,
-    fileTaxes: function fileTaxes() {
+    fileTaxes() {
       this.taxesFiledCount++
-      return Object.getPrototypeOf(this).fileTaxes.call(this)
+      return super.fileTaxes()
     },
   }
   const taxesResult = child.fileTaxes()
@@ -77,9 +83,12 @@ function methodSuperCalls() {
 
 function computedPropertyNames() {
   function getCar(make, model) {
-    const car = {}
-    car[make.toLowerCase()] = model
-    return car
+    // const car = {}
+    // car[make.toLowerCase()] = model
+    // return car
+    return {
+      [make.toLowerCase()]: model
+    }
   }
   return getCar('Hyundai', 'Accent')
 }
