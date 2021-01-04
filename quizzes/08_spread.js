@@ -4,7 +4,7 @@ function spreadFunctionCall() {
   // TODO: return the maximum value in an array of integers
   // use spread operator and Math.max() in refactoring
   const arr = [5, 6, 8, 4, 9]
-  return Math.max.apply(null, arr)
+  return Math.max(...arr)
 }
 // log(spreadFunctionCall())
 
@@ -19,9 +19,9 @@ function concatArrays() {
   function flatter(arg) {
     return arg.reduce((acc, item) => {
       if (Array.isArray(item)) {
-        return acc.concat(flatter(item))
+        return [...acc, ...flatter(item)]
       }
-      return acc.concat([item])
+      return [...acc, item]
     }, [])
   }
 }
@@ -46,7 +46,7 @@ function mergeObjects() {
       h: 'g from obj2',
     },
   }
-  return Object.assign({}, obj1, obj2)
+  return {...obj1, ...obj2}
 }
 // log(mergeObjects())
 
