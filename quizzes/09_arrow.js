@@ -2,7 +2,7 @@ import log from './pretty-log'
 
 function multiArgument() {
   // refactor to an arrow function
-  const divide = function(a, b) {
+  const divide = (a, b) => {
     return a / b
   }
   return divide(40, 10)
@@ -11,7 +11,7 @@ function multiArgument() {
 
 function noArgument() {
   // refactor to an arrow function
-  const getFive = function() {
+  const getFive = () => {
     return 5
   }
   return getFive()
@@ -20,7 +20,7 @@ function noArgument() {
 
 function singleArgument() {
   // refactor to an arrow function
-  const identity = function(i) {
+  const identity = i => {
     return i
   }
   return identity(350)
@@ -29,7 +29,7 @@ function singleArgument() {
 
 function spreadWithArrow() {
   // refactor to an arrow function
-  const asArray = function(...args) {
+  const asArray = (...args) => {
     return args
   }
   return asArray(1, 2, 3, 4)
@@ -38,7 +38,7 @@ function spreadWithArrow() {
 
 function withStatements() {
   // refactor to an arrow function
-  const tryInvoke = function(obj, fn, ...args) {
+  const tryInvoke = (obj, fn, ...args) => {
     try {
       return obj[fn](...args)
     } catch (e) {
@@ -51,7 +51,7 @@ function withStatements() {
 
 function withObject() {
   // refactor to an arrow function
-  const getObject = function(favoriteCandy) {
+  const getObject = (favoriteCandy) => {
     return {favoriteCandy}
   }
   return getObject('twix')
@@ -59,7 +59,7 @@ function withObject() {
 // log(withObject())
 
 function withMultiLineExpression() {
-  const getString = function(name) {
+  const getString = (name) => {
     return `
         Hello there ${name}
         How are you doing today?
@@ -74,11 +74,7 @@ function curryAdd() {
   return curryAddition(9)(3)(5)
 
   function curryAddition(a) {
-    return function(b) {
-      return function(c) {
-        return a + b + c
-      }
-    }
+    return (b) => (c) => a + b + c
   }
 }
 // log(curryAdd())
@@ -93,10 +89,10 @@ function context() {
     ],
     display() {
       // TODO: refactor with arrow function
-      return this.data.map(function populationStringMapper(element) {
+      return this.data.map((element) => {
         return `Population in ${element.city} is ${element.value} ${this.unit}`
-      }, this) // passing `this` as second argument to bind properly
-    },
+      }) // passing `this` as second argument to bind properly
+    }
   }
   return population.display()
 }
