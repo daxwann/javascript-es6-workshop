@@ -22,7 +22,7 @@ function initializeSet() {
   const arr = [1, 5, 7, 2, 9, 4]
   // TODO: change the following line
   // so that the Set t has array's contents
-  const set = new Set()
+  const set = new Set(arr)
   return set
 }
 // console.log(initializeSet())
@@ -34,13 +34,13 @@ function setInfo() {
   // how can you determine whether the set has a value?
   return {
     // fill these values in...
-    size: set.length,
-    hasObj: set.indexOf(obj) !== -1,
-    hasFive: set.indexOf(5) !== -1,
-    thirdItem: set[2],
+    size: set.size,
+    hasObj: set.has(obj),
+    hasFive: set.has(5),
+    thirdItem: Array.from(set)[2],
   }
 }
-// log(setInfo())
+// console.log(setInfo())
 
 function removeDuplicates() {
   // given an array
@@ -49,7 +49,7 @@ function removeDuplicates() {
 
   // TODO: use a Set to do this
   // refactor the following
-  const uniqueArr = arr.filter((elem, index) => arr.indexOf(elem) === index)
+  const uniqueArr = Array.from(new Set(arr))
 
   return uniqueArr
 }
