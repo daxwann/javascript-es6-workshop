@@ -10,20 +10,21 @@ test('has a set method', () => {
 
 test(`should enable private members in classes`, () => {
   // If you make it this far, write a class with private member variables, using WeakMaps
-  const privateProperties = new WeakMap();
   class Person {
+    static privateProperties = new WeakMap();
+
     constructor(name, age) {
-      privateProperties.set(this, { name, age })
+      Person.privateProperties.set(this, { name, age })
       // this._name = name
       // this._age = age
     }
 
     getName() {
-      return privateProperties.get(this).name;
+      return Person.privateProperties.get(this).name;
     }
 
     getAge() {
-      return privateProperties.get(this).age;
+      return Person.privateProperties.get(this).age;
     }
   }
 
