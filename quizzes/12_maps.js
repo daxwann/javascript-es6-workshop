@@ -3,6 +3,9 @@ function basicMap() {
   // TODO: add "a" as key, 3 as value
   // TODO: key is {v: 5, j: 7}, value is 7
   // TODO: key is a noop function, value is 8
+  map.set('a', 3);
+  map.set({v: 5, j: 7}, 7);
+  map.set(() => {}, 8);
   return map
 }
 // console.log(basicMap())
@@ -11,7 +14,11 @@ function initializeMap() {
   // how could we create the same kind
   // of map like we have above, except
   // do it when we call new Map()?
-  const map = new Map()
+  const map = new Map([
+    ['a', 3],
+    [{v: 5, j: 7}, 7],
+    [() => {}, 8]
+  ])
   return map
 }
 // console.log(initializeMap())
@@ -29,16 +36,20 @@ function uniquePair() {
 
 function mapInfo() {
   const objKey = {awesome: true}
-  const map = new Map([[objKey, 42]])
+  const map = new Map([
+    [objKey, 42],
+    [{}, 'hey'],
+    [45, true]
+  ])
   // how do we get `objKey`?
   return {
-    objValue: map[objKey],
-    mapSize: Object.keys(map).length,
-    hasTrue: map.hasOwnProperty(true),
-    has32: map.hasOwnProperty(32),
-    keys: Object.keys(map),
-    values: Object.keys(map).map(key => map[key]),
-    entries: Object.keys(map).map(key => [key, map[key]]),
+    objValue: map.get(objKey),
+    mapSize: map.size,
+    has45: map.has(45),
+    has32: map.has(32),
+    keys: Array.from(map.keys()),
+    values: Array.from(map.values()),
+    entries: Array.from(map.entries())
   }
 }
 // console.log(mapInfo())
@@ -93,10 +104,10 @@ function restMap() {
     ['key3', 'value3'],
     ['key4', 'value4'],
   ])
-  const [first, second, ...rest] = map
+  const [first, second, ...rest] = Array.from(map)
   return rest
 }
-// console.log(restMap())
+console.log(restMap())
 
 // SOLUTION BELOW
 // No peeking!
