@@ -4,17 +4,17 @@ function arrayIncludes() {
   // refactor to `includes`
   const array = [1, 2, 3]
   return {
-    includes2: array.indexOf(2) !== -1,
-    includes4: array.indexOf(4) !== -1,
+    includes2: array.includes(2),
+    includes4: array.includes(4),
   }
 }
-// log(arrayIncludes())
+log(arrayIncludes())
 
 function exponentiationOperator() {
   // refactor to the exponentiation operator
-  return Math.pow(3, 4)
+  return 3 ** 4
 }
-// log(exponentiationOperator())
+log(exponentiationOperator())
 
 // This is also kinda interesting...
 // Though not something you'll probably
