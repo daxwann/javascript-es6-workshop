@@ -1,4 +1,4 @@
-// promises()
+promises()
 // asyncAwaits()
 
 function log(...args) {
@@ -12,20 +12,39 @@ function logError(...args) {
 // Define and use promise style asynchronous operations
 function promises() {
   // TODO: Rewrite as async
-  const successfulPromise = timeout(100).then(result => `success: ${result}`)
+  // const successfulPromise = timeout(100).then(result => `success: ${result}`)
+  const successfulPromise = async () => {
+    const result = await timeout(100);
+    return `success: ${result}`;
+  }
 
   // TODO: Rewrite as async
-  const failingPromise = timeout(200, true).then(null, error =>
-    Promise.reject(`failure: ${error}`),
-  )
+  // const failingPromise = timeout(200, true).then(null, error =>
+  //   Promise.reject(`failure: ${error}`),
+  // )
+  const failingPromise = async () => {
+    try {
+      const result = await timeout(200, true);
+      return `success: ${result}`;
+    } catch (err) {
+      return Promise.reject(`failure: ${err}`)
+    }
+  }
 
-  const recoveredPromise = timeout(300, true).then(null, error =>
-    Promise.resolve(`failed and recovered: ${error}`),
-  )
+  // const recoveredPromise = timeout(300, true).then(null, error =>
+  //   Promise.resolve(`failed and recovered: ${error}`),
+  // )
+  const recoveredPromise = async () => {
+    try {
+      const result = await timeout(300, true);
+    } catch (error) {
+      return Promise.resolve(`failed and recovered: ${error}`);
+    }
+  }
 
-  successfulPromise.then(log, logError)
-  failingPromise.then(log, logError)
-  recoveredPromise.then(log, logError)
+  successfulPromise().then(log, logError)
+  failingPromise().then(log, logError)
+  recoveredPromise().then(log, logError)
 }
 
 // This is the mothership of all things asynchronous
