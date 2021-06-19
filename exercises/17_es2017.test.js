@@ -1,13 +1,14 @@
 test('String.prototype.padStart saves us from left-pad-gate', () => {
   const originalString = 'Worlds Finest'
   // call padStart on this string to make the test pass
-  const result = originalString
+  const result = originalString.padStart(4 + originalString.length);
   expect(result).toBe('    Worlds Finest')
 })
 
 test('String.prototype.padEnd (and padStart) can be given a string to pad with', () => {
   const originalString = 'Stronger Together'
   // call padEnd on this string to make the test pass
+  const result = originalString.padEnd(originalString.length + 10, "-123");
   expect(result).toBe('Stronger Together-123-123-1')
 })
 
@@ -25,6 +26,7 @@ test('Object.values gets just the values of an object', () => {
       'Alex Danvers',
     ],
   }
+  const result = Object.values(show);
   // get the values of the show object as an array
   expect(result).toEqual([
     'Supergirl',
@@ -55,6 +57,7 @@ test('Object.entries gives an array of arrays as [key, value]', () => {
       'Joe West',
     ],
   }
+  const result = Object.entries(show);
   // get a [key, value] array of the show object
   expect(result).toEqual([
     ['title', 'The Flash'],
@@ -77,11 +80,11 @@ test('Object.entries gives an array of arrays as [key, value]', () => {
 test('Trailing commas in function parameter lists and calls help us with git', () => {
   // becasue this is a syntax thing, we'll put it inside a string and use `eval` to make sure
   // that you get the syntax correct :)
-  expect(`
+  expect(eval(`
     function foo(
       a,
       b,
-      c
+      c,
     ) {
       log(a, b, c)
     }
@@ -89,13 +92,13 @@ test('Trailing commas in function parameter lists and calls help us with git', (
     foo(
       1,
       2,
-      3
+      3,
     )
 
     function bar(
       a,
       b,
-      ...rest,
+      ...rest
     ) {
       log(a, b, ...rest)
     }
@@ -107,7 +110,7 @@ test('Trailing commas in function parameter lists and calls help us with git', (
     function log() {
       // do nothing :)
     }
-  `).toBeValidSyntax()
+  `)).toBeValidSyntax()
 })
 
 //////// Elaboration & Feedback /////////
@@ -115,7 +118,7 @@ test('Trailing commas in function parameter lists and calls help us with git', (
 http://ws.kcd.im/?ws=ES6+and+Beyond&e=ES2017&em=
 */
 test('I submitted my elaboration and feedback', () => {
-  const submitted = false // change this when you've submitted!
+  const submitted = true // change this when you've submitted!
   expect(true).toBe(submitted)
 })
 ////////////////////////////////
