@@ -3,8 +3,8 @@ import log from './pretty-log'
 function padString() {
   const string = 'hello'
   // make string have padding on either side
-  const startPadded = string.watBeginning(2) // maybe?
-  const endPadded = startPadded.watEnding(2) // perhaps?
+  const startPadded = string.padStart(2 + string.length) // maybe?
+  const endPadded = startPadded.padEnd(2 + startPadded.length) // perhaps?
   return endPadded === '  hello  '
 }
 // log(padString())
@@ -12,7 +12,7 @@ function padString() {
 function padStringWithPadString() {
   const string = 'hallo'
   // make the padString be 'sup '
-  const result = string.padStart(17)
+  const result = string.padStart(17, 'sup ')
   return result
 }
 // log(padStringWithPadString())
