@@ -8,10 +8,10 @@ function basicExample() {
       this.name = name
       this.preference = preference
     }
-    greet(otherName) {
+    greet = (otherName) => {
       return `Hello ${otherName}, my name is ${this.name}`
     }
-    askAboutWeather() {
+    askAboutWeather = () => {
       const antiPreference = this.preference === 'cool' ? 'warm' : 'cool'
       return `Is it ${antiPreference} outside? I prefer it ${this.preference}.`
     }
@@ -29,7 +29,7 @@ function basicExample() {
     weatherQuestion: interestingCallbacks.askAboutWeather(),
   }
 }
-// log(basicExample())
+log(basicExample())
 
 // SOLUTIONS BELOW!
 
