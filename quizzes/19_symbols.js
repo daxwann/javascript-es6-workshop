@@ -1,7 +1,7 @@
 import log from './pretty-log'
 
 function createSymbol() {
-  const mySymbol = new Symbol()
+  const mySymbol = Symbol()
   return mySymbol
 }
 // log(createSymbol())
@@ -9,7 +9,7 @@ function createSymbol() {
 function symbolDescription() {
   // how would we give this symbol an identifier
   // for debugging purposes?
-  const mySymbol = Symbol()
+  const mySymbol = Symbol('test')
   return mySymbol
 }
 // log(symbolDescription())
