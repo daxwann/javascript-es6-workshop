@@ -58,6 +58,19 @@ function customIterator() {
     ford: 'Focus',
     nissan: 'Sentra',
     toyota: 'Corolla',
+    [Symbol.iterator]() {
+      let currentIndex = -1;
+      const values = Object.values(this);
+      return {
+        next() {
+          currentIndex++;
+          return {
+            value: values[currentIndex],
+            done: currentIndex >= values.length
+          }
+        }
+      }
+    }
   }
   return [...cars]
 }
